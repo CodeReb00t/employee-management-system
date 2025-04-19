@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Code') {
             steps {
-                git 'https://github.com/CodeReb00t/employee-management-system.git'
+                git branch: 'main', url: 'https://github.com/CodeReb00t/employee-management-system.git'
             }
         }
 
@@ -35,8 +35,6 @@ pipeline {
                 sh 'puppet apply puppet/manifests/init.pp'
             }
         }
-
-        
     }
 
     post {
