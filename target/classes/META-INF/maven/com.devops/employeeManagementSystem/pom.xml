@@ -33,6 +33,12 @@
       <version>5.11.0</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+  <groupId>io.dropwizard.metrics</groupId>
+  <artifactId>metrics-graphite</artifactId>
+  <version>4.2.18</version>
+</dependency>
+
 
     <!-- JUnit 5 Test Engine -->
     <dependency>
