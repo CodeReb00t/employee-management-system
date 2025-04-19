@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven 4.0'  // use your configured Maven version in Jenkins
+    }
+
+    stages {
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/CodeReb00t/employee-management-system.git'
+            }
+        }
+
+        stage('Build Project') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Run Unit Tests') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Publish Test Reports') {
+            steps {
+                junit 'target/surefire-reports/*.xml'
+            }
+        }
+
+        stage('Deploy using Puppet') {
+            steps {
+                sh 'puppet apply puppet/manifests/init.pp'
+            }
+        }
+
+        
+    }
+
+    post {
+        always {
+            echo 'Pipeline completed!'
+        }
+    }
+}
