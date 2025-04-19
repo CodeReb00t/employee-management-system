@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 4.0'  // use your configured Maven version in Jenkins
+        maven 'Maven 4.0'
     }
 
     stages {
@@ -32,7 +32,7 @@ pipeline {
 
         stage('Deploy using Puppet') {
             environment {
-                PATH+PUPPET = "/opt/puppetlabs/bin"
+                'PATH+PUPPET' = "/opt/puppetlabs/bin"
             }
             steps {
                 sh 'puppet apply puppet/manifests/init.pp'
