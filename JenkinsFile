@@ -31,6 +31,9 @@ pipeline {
         }
 
         stage('Deploy using Puppet') {
+            environment {
+                PATH+PUPPET = "/opt/puppetlabs/bin"
+            }
             steps {
                 sh 'puppet apply puppet/manifests/init.pp'
             }
